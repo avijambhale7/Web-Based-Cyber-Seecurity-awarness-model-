@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberLearn – Cyber Security Awareness</title>
+  <meta name="description" content="A web-based cyber security awareness e-learning platform with lessons, interactive tools, quizzes and badges.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="#home" class="logo">🛡️ <span>CyberLearn</span></a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    <nav id="nav">
+      <a href="#home" data-page="home">🏠 Home</a>
+      <a href="#lessons" data-page="lessons">📘 Lessons</a>
+      <a href="#password" data-page="password">🔐 Password</a>
+      <a href="#phishing" data-page="phishing">🎣 Phishing</a>
+      <a href="#quiz" data-page="quiz">📝 Quiz</a>
+      <a href="#badges" data-page="badges">🎖️ Badges</a>
+    </nav>
+    <div class="points-pill">⭐ <span id="points-top">0</span></div>
+  </header>
+
+  <main>
+    <!-- ================= HOME ================= -->
+    <section id="home" class="page">
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow" id="welcome">Cyber Security Awareness Platform</p>
+          <h1>Become a <span class="gradient">Cyber Hero</span></h1>
+          <p>Learn how hackers trick people, practise spotting attacks, and earn badges as you level up your online safety.</p>
+          <div class="hero-btns">
+            <a href="#lessons" class="btn">Start Learning →</a>
+            <a href="#phishing" class="btn btn-outline">Try a Challenge</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="shield">🛡️</div>
+          <span class="float f1">🔑</span>
+          <span class="float f2">🦠</span>
+          <span class="float f3">🎣</span>
+          <span class="float f4">🔒</span>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span class="stat-icon">⭐</span><b id="points">0</b><small>Points</small></div>
+        <div class="stat"><span class="stat-icon">📘</span><b id="lessons-done">0/0</b><small>Lessons</small></div>
+        <div class="stat"><span class="stat-icon">🏆</span><b id="best-score">0/0</b><small>Best Quiz</small></div>
+        <div class="stat"><span class="stat-icon">🎖️</span><b id="badge-count">0/0</b><small>Badges</small></div>
+      </div>
+
+      <div class="card level-card">
+        <div class="level-row">
+          <span>Your Level: <b id="level">Beginner</b></span>
+          <span id="next-level" class="muted"></span>
+        </div>
+        <div class="bar"><div id="level-bar"></div></div>
+      </div>
+
+      <h2 class="section-title">Interactive Tools</h2>
+      <div class="tools">
+        <a href="#password" class="card tool"><span>🔐</span><h3>Password Checker</h3><p class="muted">See how strong your password really is</p></a>
+        <a href="#phishing" class="card tool"><span>🎣</span><h3>Spot the Phish</h3><p class="muted">Catch the fake emails before they catch you</p></a>
+        <a href="#quiz" class="card tool"><span>📝</span><h3>Cyber Quiz</h3><p class="muted">Test everything you have learned</p></a>
+      </div>
+
+      <div class="card tip">
+        <div>
+          <h3>💡 Cyber Tip of the Day</h3>
+          <p id="tip-text"></p>
+        </div>
+        <button class="btn btn-small" onclick="showTip()">Next Tip</button>
+      </div>
+
+      <h2 class="section-title">Did You Know?</h2>
+      <div class="facts">
+        <div class="card fact"><b>90%+</b><p>of cyber attacks start with a phishing email</p></div>
+        <div class="card fact"><b>"123456"</b><p>is still one of the most used passwords in the world</p></div>
+        <div class="card fact"><b>2FA</b><p>blocks most automated account takeover attempts</p></div>
+      </div>
+    </section>
+
+    <!-- ================= LESSONS ================= -->
+    <section id="lessons" class="page">
+      <div class="page-head">
+        <h1>📘 Lessons</h1>
+        <p class="muted">Read each lesson and mark it complete to earn <b>+10 points</b>.</p>
+      </div>
+      <div id="lesson-list" class="lesson-grid"></div>
+    </section>
+
+    <!-- ================= PASSWORD ================= -->
+    <section id="password" class="page">
+      <div class="page-head">
+        <h1>🔐 Password Strength Checker</h1>
+        <p class="muted">Type a password to test it. Nothing is saved or sent anywhere. Pass every check to earn <b>+10 points</b>.</p>
+      </div>
+      <div class="card">
+        <div class="pw-wrap">
+          <input type="password" id="pw-input" placeholder="Type a password..." oninput="checkPassword()" autocomplete="off">
+          <button class="eye" onclick="togglePassword()" id="eye-btn" aria-label="Show password">👁️</button>
+        </div>
+        <div class="bar"><div id="pw-bar"></div></div>
+        <div class="pw-info">
+          <span>Strength: <b id="pw-label">–</b></span>
+          <span>Time to crack: <b id="pw-time">–</b></span>
+        </div>
+        <ul id="pw-rules" class="rules"></ul>
+      </div>
+    </section>
+
+    <!-- ================= PHISHING ================= -->
+    <section id="phishing" class="page">
+      <div class="page-head">
+        <h1>🎣 Spot the Phish</h1>
+        <p class="muted">Is each email <b>Phishing</b> or <b>Safe</b>? Earn <b>+5 points</b> per correct answer in your best attempt.</p>
+      </div>
+      <div id="phish-box"></div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section id="quiz" class="page">
+      <div class="page-head">
+        <h1>📝 Cyber Quiz</h1>
+        <p class="muted">Earn <b>+5 points</b> per correct answer in your best attempt. Score 6 or more to pass.</p>
+      </div>
+      <div id="quiz-box"></div>
+    </section>
+
+    <!-- ================= BADGES ================= -->
+    <section id="badges" class="page">
+      <div class="page-head">
+        <h1>🎖️ Badges & Certificate</h1>
+        <p class="muted">Complete lessons, tools and quizzes to unlock every badge.</p>
+      </div>
+      <div id="badge-list" class="badge-grid"></div>
+
+      <div class="card cert-card">
+        <h2>🎓 Certificate of Completion</h2>
+        <div id="cert-locked">
+          <p class="muted">Finish <b>all lessons</b> and <b>pass the quiz</b> (6 or more correct) to unlock your certificate.</p>
+        </div>
+        <div id="cert-unlocked" class="hidden">
+          <p>Congratulations! Enter your name to download your certificate.</p>
+          <div class="cert-form">
+            <input type="text" id="cert-name" placeholder="Your full name" maxlength="40">
+            <button class="btn" onclick="printCertificate()">Download Certificate</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-danger" onclick="resetProgress()">Reset Progress</button>
+    </section>
+  </main>
+
+  <!-- Printable certificate (only visible when printing) -->
+  <div id="certificate">
+    <div class="cert-inner">
+      <p class="cert-small">🛡️ CyberLearn</p>
+      <h1>Certificate of Completion</h1>
+      <p>This is to certify that</p>
+      <h2 id="cert-print-name">Name</h2>
+      <p>has successfully completed the <b>Cyber Security Awareness</b> course<br>with a score of <b id="cert-print-score"></b> points.</p>
+      <p class="cert-small" id="cert-print-date"></p>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <footer>
+    <p>🛡️ <b>CyberLearn</b> – Web-Based Cyber Security Awareness Model</p>
+    <p class="muted">Micro Project © 2026 · Stay alert, stay secure.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
